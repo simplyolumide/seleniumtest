@@ -1,0 +1,454 @@
+<base href="https://newwidget.dojah.io">
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/img/logo.svg">
+<link rel="stylesheet" href="/styles/styles.css">
+<title>Dojah Widget</title>
+</head>
+<body>
+<main class="overlay">
+<input type="hidden" id="session_id">
+<input type="hidden" id="transfer_amount">
+<input type="hidden" id="last_view">
+<input type="hidden" id="bank-color" value="#40196D">
+<div class="widget" id="index" style="display: none;">
+<div class="widget__overlay position-relative">
+<div class="d-align-center d-justify-end p-2">
+<button class="btn" onclick="if (!window.__cfRLUnblockHandlers) return false; exit('index')">
+<img src="/img/close.svg" alt="">
+</button>
+</div>
+<form class="widget__content pl-1 pr-1" onsubmit="if (!window.__cfRLUnblockHandlers) return false; goToAccountType()">
+<div class="d-justify-center">
+<img src="/img/logo.svg" alt="" class="logo dynamic-logo">
+</div>
+<p class="text-center mt-1">
+Pay <span class="font-weight-bold">₦<span class="payment-amt">1</span> </span> to <span class="app-name">test</span>
+</p>
+<div class="error-message-div alt index" style="display: none;">
+<p class="error-message" style="background: none;"></p>
+</div>
+<div class="d-flex mt-4">
+<div><img src="/img/shield.svg" alt=""></div>
+<div class="ml-2">
+<p class="font-weight-bold">Secured</p>
+<p class="small">
+Transfer of your information is encrypted end-to-end
+</p>
+</div>
+</div>
+<div class="d-flex mt-2">
+<div><img src="/img/shield.svg" alt=""></div>
+<div class="ml-2">
+<p class="font-weight-bold">Private</p>
+<p class="small">
+Your credentials will never be made accessible to <span class="app-name">test</span>
+</p>
+</div>
+</div>
+<button class="btn btn-submit btn-primary mt-60">Continue</button>
+<p class="text-center xs-small pl-2 pr-2 mt-1">
+By clicking continue, you agree to the
+<a href="#">terms and condition</a>
+</p>
+</form>
+<div class="position-absolute footer d-align-center d-justify-center w-100">
+<p class="text-dark-75" style="font-size: 0.5rem; margin-right: 5px; margin-top: 3px">
+Powered by
+</p>
+<img src="/img/logo.svg" alt="" class="footer-logo">
+</div>
+</div>
+</div>
+<div class="widget position-relative" id="bank-select" style="display: none;">
+<div class="widget__overlay position-relative">
+<div class="d-align-center d-justify-between p-2">
+<button class="btn" onclick="if (!window.__cfRLUnblockHandlers) return false; goBack('account-type')">
+<img src="/img/back.svg" alt="">
+</button>
+<button class="btn" onclick="if (!window.__cfRLUnblockHandlers) return false; exit('bank-select')">
+<img src="/img/close.svg" alt="">
+</button>
+</div>
+<form class="widget__content" onsubmit="if (!window.__cfRLUnblockHandlers) return false; submitBank()">
+<div class="w-100">
+<p class="font-weight-bold">Select your bank</p>
+<p class="x-small">
+Pay <span class="font-weight-bold">₦<span class="payment-amt">1</span> </span> to <span class="app-name">test</span>
+</p>
+<div class="position-relative mt-1">
+<input type="text" class="form-control form-search focus-primary h-40" placeholder="Search" onkeyup="if (!window.__cfRLUnblockHandlers) return false; filterBanks()">
+<img src="/img/search.svg" alt="" class="position-absolute search">
+</div>
+<div class="d-flex flex-wrap mt-1 banks banks-alt individual" style="display: flex;">
+<button class="btn bank-select " type="button" search="Guaranty Trust Bank" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('GTB', '2', '#DD4F05', '/img/gtbank.svg')" style="">
+<img src="/img/gtbank.svg" alt="">
+</button>
+<button class="btn bank-select " type="button" search="Access Bank" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Access', '3', '#EE7E01', '/img/access.svg')" style="">
+<img src="/img/access.svg" alt="">
+</button>
+<button class="btn bank-select " type="button" search="Access Bank (Diamond)" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Access-Diamond', '4', '#EE7E01', '/img/access.svg')" style="">
+<img src="/img/access.svg" alt="">
+</button>
+<button class="btn bank-select " type="button" search="Ecobank Nigeria" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Ecobank', '5', '#0082BB', '/img/ecobank.png')" style="">
+<img src="/img/ecobank.png" alt="">
+</button>
+<button class="btn bank-select " type="button" search="First Bank of Nigeria" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('FBN', '6', '#003B65', '/img/first-bank.png')" style="">
+<img src="/img/first-bank.png" alt="">
+</button>
+<button class="btn bank-select " type="button" search="Polaris Bank" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Polaris', '7', '#56296A', '/img/polaris.png')" style="">
+<img src="/img/polaris.png" alt="">
+</button>
+<button class="btn bank-select " type="button" search="United Bank For Africa" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('UBA', '8', '#D70900', '/img/uba.png')" style="">
+<img src="/img/uba.png" alt="">
+</button>
+<button class="btn bank-select " type="button" search="Zenith Bank" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Zenith', '9', '#E3000F', '/img/zenith-bank.png')" style="">
+<img src="/img/zenith-bank.png" alt="">
+</button>
+<button class="btn bank-select " type="button" search="Kuda Bank" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Kuda', '10', '#40196D', '/img/kuda.png')" style="">
+<img src="/img/kuda.png" alt="">
+</button>
+<button class="btn bank-select " type="button" search="Standard Chartered Bank" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Standard', '11', '#008738', '/img/standard-chartered.png')" style="">
+<img src="/img/standard-chartered.png" alt="">
+</button>
+<button class="btn bank-select " type="button" search="Barter" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Barter', '12', '#F5A623', '/img/barter.png')" style="">
+<img src="/img/barter.png" alt="">
+</button>
+<button class="btn bank-select " type="button" search="Union Bank of Nigeria" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Union', '13', '#009FDF', '/img/union.png')" style="">
+<img src="/img/union.png" alt="">
+</button>
+<button class="btn bank-select " type="button" search="Providus Bank" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Providus', '14', '#2F444E', '/img/providus_bank.jpg')" style="">
+<img src="/img/providus_bank.jpg" alt="">
+</button>
+<button class="btn bank-select " type="button" search="Stanbic Bank" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Stanbic', '15', '#01529B', '/img/stanbic.png')" style="">
+<img src="/img/stanbic.png" alt="">
+</button>
+<button class="btn bank-select " type="button" search="Wallet Africa" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Wallet', '16', '#532D94', '/img/wallets.png')" style="">
+<img src="/img/wallets.png" alt="">
+</button>
+</div>
+<div class="d-flex flex-wrap mt-1 banks banks-alt corporate" style="display: none;">
+<button class="btn bank-select  " type="button" search="Guaranty Trust Bank - Corporate" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('GTB', '17', '#DD4F05', '/img/gtbank.svg')" style="">
+<img src="/img/gtbank.svg" alt="">
+</button>
+<button class="btn bank-select  " type="button" search="Providus Bank - Corporate" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Providus', '18', '#2F444E', '/img/providus_bank.jpg')" style="">
+<img src="/img/providus_bank.jpg" alt="">
+</button>
+<button class="btn bank-select  " type="button" search="Wema Bank - Corporate" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Wema', '19', '#AF328E', '/img/wema.png')" style="">
+<img src="/img/wema.png" alt="">
+</button>
+<button class="btn bank-select  " type="button" search="Access Bank - Corporate" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Access', '20', '#EE7E01', '/img/access.svg')" style="">
+<img src="/img/access.svg" alt="">
+</button>
+<button class="btn bank-select  " type="button" search="Zenith Bank - Corporate" onclick="if (!window.__cfRLUnblockHandlers) return false; selectBank('Zenith', '21', '#E3000F', '/img/zenith-bank.png')" style="">
+<img src="/img/zenith-bank.png" alt="">
+</button>
+</div>
+<input type="hidden" value="10">
+</div>
+<button class="btn btn-submit btn-primary mt-2 btn-bottom">Continue</button>
+</form>
+<div class="position-absolute footer d-align-center d-justify-center w-100">
+<p class="text-dark-75" style="font-size: 0.5rem; margin-right: 5px; margin-top: 3px">
+Powered by
+</p>
+<img src="/img/logo.svg" alt="" class="footer-logo">
+</div>
+</div>
+</div>
+<div class="widget position-relative" id="security-question" style="display: none;">
+<div class="widget__overlay position-relative">
+<div class="d-justify-end">
+<button class="btn p-2" onclick="if (!window.__cfRLUnblockHandlers) return false; exit('security-question')">
+<img src="/img/close.svg" alt="">
+</button>
+</div>
+<form class="widget__content" onsubmit="if (!window.__cfRLUnblockHandlers) return false; submitOTP()">
+<div class="w-100">
+<p class="text-center font-weight-bold">Security Question</p>
+<p class="x-small text-center">
+Pay <span class="font-weight-bold">₦<span class="payment-amt">1</span> </span> to <span class="app-name">test</span>
+</p>
+<p class="small text-small pl-2 pr-2 text-center text-dark mt-4 pt-1 question">
+Login with the credentials to your GTB Internet Banking
+</p>
+<div class="error-message-div alt" style="display: none;">
+<p class="error-message" style="background: none;"></p>
+</div>
+<input type="text" class="form-control focus-primary mt-2" value="" placeholder=" " id="otp">
+</div>
+<button class="btn btn-submit btn-primary mt-3 dynamic-btn btn-bottom" style="background: rgb(64, 25, 109);">Submit</button>
+</form>
+<div class="position-absolute footer d-align-center d-justify-center w-100">
+<p class="text-dark-75" style="font-size: 0.5rem; margin-right: 5px; margin-top: 3px">
+Powered by
+</p>
+<img src="/img/logo.svg" alt="" class="footer-logo">
+</div>
+</div>
+</div>
+<div class="widget position-relative" id="success" style="display: none;">
+<div class="widget__overlay position-relative">
+<div class="d-align-center d-justify-end pt-2 pl-2 pr-2">
+<button class="btn" onclick="if (!window.__cfRLUnblockHandlers) return false; exit('success')">
+<img src="/img/close.svg" alt="">
+</button>
+</div>
+<form class="widget__content" onsubmit="if (!window.__cfRLUnblockHandlers) return false; finish()">
+<div class="w-100">
+<div class="d-justify-center">
+<img src="/img/kuda.png" alt="" class="bank-logo dynamic-logo">
+</div>
+<p class="text-center font-weight-bold pl-2 pr-2 mt-5">
+₦<span class="payment-amt">1</span>
+</p>
+<p class="text-center pl-2 pr-2 mt-1 pb-1">
+Payment Successful!!!
+</p>
+</div>
+<button class="btn btn-submit btn-primary mt-4 dynamic-btn btn-bottom" style="background: rgb(64, 25, 109);">
+Continue
+</button>
+</form>
+<div class="position-absolute footer d-align-center d-justify-center w-100">
+<p class="text-dark-75" style="font-size: 0.5rem; margin-right: 5px; margin-top: 3px">
+Powered by
+</p>
+<img src="/img/logo.svg" alt="" class="footer-logo">
+</div>
+</div>
+</div>
+<div class="widget position-relative" id="login" style="display: none;">
+<div class="widget__overlay position-relative">
+<div class="d-align-center d-justify-between pt-2 pl-2 pr-2">
+<button class="btn" onclick="if (!window.__cfRLUnblockHandlers) return false; goBack('bank-select')">
+<img src="/img/back.svg" alt="">
+</button>
+<button class="btn" onclick="if (!window.__cfRLUnblockHandlers) return false; exit('login')">
+<img src="/img/close.svg" alt="">
+</button>
+</div>
+<form class="widget__content" onsubmit="if (!window.__cfRLUnblockHandlers) return false; login('pay')">
+<div class="w-100">
+<div class="d-justify-center">
+<img src="/img/kuda.png" alt="" class="bank-logo">
+</div>
+<p class="x-small text-small pl-4 pr-4 text-center text-dark">
+Login with the credentials to your <span class="bank">Kuda</span> Internet
+Banking
+</p>
+<div class="error-message-div">
+<p class="error-message" style="background: none;"></p>
+</div>
+<div class="form-container">
+<div class="position-relative">
+<input type="text" class="form-control" value="" placeholder=" " id="username" required="" style="border: 1px solid rgb(117, 127, 140);">
+
+<label for="username" class="form-placeholder" style="color: rgb(117, 127, 140);">Username</label>
+</div>
+<div class="position-relative mt-2">
+<input type="password" class="form-control" value="" placeholder=" " id="password" required="" style="border: 1px solid rgb(117, 127, 140);">
+<label for="password" class="form-placeholder" style="color: rgb(117, 127, 140);">Password</label>
+</div>
+<div class="position-relative mt-2 access_code" style="display: none;">
+<input type="text" class="form-control" value="" placeholder=" " id="access_code">
+<label for="access_code" class="form-placeholder">Access Code</label>
+</div>
+<p class="x-small text-small text-dark mt-1 pl-1">Forgot Password?</p>
+</div>
+</div>
+<button class="btn btn-submit btn-secondary mt-2 dynamic-btn btn-bottom" style="background: rgb(64, 25, 109);">
+Continue
+</button>
+</form>
+<div class="position-absolute footer d-align-center d-justify-center w-100">
+<p class="text-dark-75" style="font-size: 0.5rem; margin-right: 5px; margin-top: 3px">
+Powered by
+</p>
+<img src="/img/logo.svg" alt="" class="footer-logo">
+</div>
+</div>
+</div>
+<div class="widget position-relative" id="account-select" style="display: none;">
+<div class="widget__overlay position-relative">
+<div class="d-align-center d-justify-between pt-2 pl-2 pr-2">
+<button class="btn" onclick="if (!window.__cfRLUnblockHandlers) return false; goBack('bank-select')">
+<img src="/img/back.svg" alt="">
+</button>
+<button class="btn" onclick="if (!window.__cfRLUnblockHandlers) return false; exit('account-select')">
+<img src="/img/close.svg" alt="">
+</button>
+</div>
+<form class="widget__content" onsubmit="if (!window.__cfRLUnblockHandlers) return false; initiatePayment()">
+<div class="w-100">
+<div class="d-justify-center">
+<img src="/img/kuda.png" alt="" class="bank-logo">
+</div>
+<p class="x-small text-small pl-4 pr-4 text-center text-dark">
+Select the account you want to link
+</p>
+<div class="error-message-div alt" style="display: none;">
+<p class="error-message" style="background: none;"></p>
+</div>
+<div class="accounts"></div>
+ </div>
+<button class="btn btn-submit btn-secondary mt-4 dynamic-btn btn-bottom" style="background: rgb(64, 25, 109);">
+Continue
+</button>
+<input type="hidden">
+</form>
+<div class="position-absolute footer d-align-center d-justify-center w-100">
+<p class="text-dark-75" style="font-size: 0.5rem; margin-right: 5px; margin-top: 3px">
+Powered by
+</p>
+<img src="/img/logo.svg" alt="" class="footer-logo">
+</div>
+</div>
+</div>
+<div class="widget position-relative d-center show" id="loading" style="display: flex;">
+<img src="/img/loader.svg" alt="" class="loader">
+<div class="position-absolute footer d-align-center d-justify-center w-100">
+<p class="text-dark-75" style="font-size: 0.5rem; margin-right: 5px; margin-top: 3px">
+Powered by
+</p>
+<img src="/img/logo.svg" alt="" class="footer-logo">
+</div>
+</div>
+<div class="widget position-relative d-center" id="error" style="display: none;">
+<div class="d-justify-center mt-4">
+
+</div>
+<div class="error-widget">
+<h3>An error has occurred</h3>
+<h5>Please ensure public key is correct</h5>
+</div>
+<div class="position-absolute footer d-align-center d-justify-center w-100">
+<p class="text-dark-75" style="font-size: 0.5rem; margin-right: 5px; margin-top: 3px">
+Powered by
+</p>
+<img src="/img/logo.svg" alt="" class="footer-logo">
+</div>
+</div>
+<div class="widget position-relative" id="account-type" style="display: none;">
+<div class="widget__overlay position-relative">
+<div class="d-align-center d-justify-between p-2">
+<button class="btn" onclick="if (!window.__cfRLUnblockHandlers) return false; goBack('index')">
+<img src="/img/back.svg" alt="">
+</button>
+<button class="btn" onclick="if (!window.__cfRLUnblockHandlers) return false; exit('account-type')">
+<img src="/img/close.svg" alt="">
+</button>
+</div>
+<form class="widget__content" onsubmit="if (!window.__cfRLUnblockHandlers) return false; submitAccountType()">
+<div class="w-100">
+<p class="font-weight-bold">Select account type</p>
+<div class="d-flex flex-wrap mt-3">
+<div class="col-6 account-type">
+<button class="btn bank-select" type="button" onclick="if (!window.__cfRLUnblockHandlers) return false; selectAccountType('individual')">
+<img src="/img/individual.svg" alt="">
+</button>
+<p class="text-dark">Individual</p>
+</div>
+<div class="col-6 account-type">
+<button class="btn bank-select" type="button" onclick="if (!window.__cfRLUnblockHandlers) return false; selectAccountType('corporate')">
+<img src="/img/corporate.svg" alt="">
+</button>
+<p class="text-dark">Corporate</p>
+</div>
+<input type="hidden" value="individual">
+</div>
+</div>
+<button class="btn btn-submit btn-primary mt-4 btn-bottom">Continue</button>
+</form>
+<div class="position-absolute footer d-align-center d-justify-center w-100">
+<p class="text-dark-75" style="font-size: 0.5rem; margin-right: 5px; margin-top: 3px">
+Powered by
+</p>
+<img src="/img/logo.svg" alt="" class="footer-logo">
+</div>
+
+
+
+</div>
+</div>
+<div class="widget position-relative" id="exit" style="display: none;">
+<div class="widget__overlay position-relative">
+<div class="d-align-center d-justify-between pt-2 pl-2 pr-2">
+<button class="btn" onclick="if (!window.__cfRLUnblockHandlers) return false; goBack()">
+<img src="/img/back.svg" alt="">
+</button>
+
+</div>
+<form class="widget__content">
+<div class="w-100">
+<div class="d-justify-center">
+<img src="/img/kuda.png" alt="" class="bank-logo">
+</div>
+<p class="text-center text-dark pl-2 pr-2 pt-4 mt-1">
+Are you sure you want to exit?
+</p>
+<p class="x-small pl-4 pr-4 text-center text-dark mb-2">
+You haven’t linked your account yet
+</p>
+<div class="error-message-div alt" style="display: none;">
+<p class="error-message" style="background: none;"></p>
+</div>
+</div>
+<button class="btn btn-submit btn-primary mt-60 dynamic-btn" onclick="if (!window.__cfRLUnblockHandlers) return false; finish()" style="background: rgb(64, 25, 109);">Yes, Exit</button>
+<button class="btn btn-submit btn-outline-primary mt-2 dynamic-btn-alt" type="button" onclick="if (!window.__cfRLUnblockHandlers) return false; goBack()" style="color: rgb(64, 25, 109); border: 1px solid rgb(64, 25, 109);">
+No, Cancel
+</button>
+</form>
+<div class="position-absolute footer d-align-center d-justify-center w-100">
+<p class="text-dark-75" style="font-size: 0.5rem; margin-right: 5px; margin-top: 3px">
+Powered by
+</p>
+<img src="/img/logo.svg" alt="" class="footer-logo">
+</div>
+</div>
+</div>
+<div class="widget position-relative" id="expired" style="display: none;">
+<div class="widget__overlay position-relative">
+<div class="d-align-center d-justify-between pt-2 pl-2 pr-2">
+
+
+</div>
+<form class="widget__content">
+<div class="w-100">
+<div class="d-justify-center">
+<img src="/img/kuda.png" alt="" class="bank-logo">
+</div>
+<p class="text-center text-dark pl-2 pr-2 pt-4 mt-1 session-err">
+Your session has expired
+</p>
+<p class="x-small pl-4 pr-4 text-center text-dark mb-2">
+Do you want to exit?
+</p>
+</div>
+<button class="btn btn-submit btn-primary mt- dynamic-btn" onclick="if (!window.__cfRLUnblockHandlers) return false; startConnection()" style="background: rgb(64, 25, 109);">
+Yes, Exit
+</button>
+<button class="btn btn-submit btn-outline-primary mt-2 dynamic-btn-alt" type="button" onclick="if (!window.__cfRLUnblockHandlers) return false; startConnection()" style="color: rgb(64, 25, 109); border: 1px solid rgb(64, 25, 109);">
+No, Restart Session
+</button>
+</form>
+<div class="position-absolute footer d-align-center d-justify-center w-100">
+<p class="text-dark-75" style="font-size: 0.5rem; margin-right: 5px; margin-top: 3px">
+Powered by
+</p>
+<img src="/img/logo.svg" alt="" class="footer-logo">
+</div>
+</div>
+</div>
+</main>
+<script defer="" src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon="{&quot;rayId&quot;:&quot;690f1f2b9a7d1eeb&quot;,&quot;version&quot;:&quot;2021.8.1&quot;,&quot;r&quot;:1,&quot;token&quot;:&quot;b07d1d79a6d1431dbf5ef6c296bffb43&quot;,&quot;si&quot;:10}"></script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous" type="text/javascript">
+  </script>
+<script src="https://unpkg.com/@microsoft/signalr@6.0.0-preview.5.21301.17/dist/browser/signalr.min.js" type="text/javascript"></script>
+<script type="text/javascript" src="/js/transfer.js"></script>
+<script type="text/javascript" src="/js/events.js"></script>
+<script type="text/javascript" src="/js/script.js"></script>
+
+</body></html>

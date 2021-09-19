@@ -1,0 +1,24 @@
+test_dopay.py::DoPayTestCase::test_do_pay
+--------------------------------------------------------------------
+Last Page: https://newwidget.dojah.io/payment?app_id=6138a052147a0100341ca124&p_key=prod_pk_Nehu272p0jW6Cg8DTzC5QBdqq&amount=1
+  Browser: chrome
+Timestamp: 1632015907  (Unix Timestamp)
+     Date: Sunday, 19 September 2021
+     Time: 2:45:07 AM  (WAT, UTC+01:00)
+--------------------------------------------------------------------
+Traceback: File "/usr/local/Cellar/python@3.9/3.9.5/Frameworks/Python.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 593, in run
+    self._callTestMethod(testMethod)
+  File "/usr/local/Cellar/python@3.9/3.9.5/Frameworks/Python.framework/Versions/3.9/lib/python3.9/unittest/case.py", line 550, in _callTestMethod
+    method()
+  File "/Users/apple/PycharmProjects/dojahProject/tests/test_dopay.py", line 104, in test_do_pay
+    self.assert_element("//div[@id='account-select']/div/form/div/div/img")
+  File "/Users/apple/PycharmProjects/dojahProject/venv/lib/python3.9/site-packages/seleniumbase/fixtures/base_case.py", line 7487, in assert_element
+    self.wait_for_element_visible(selector, by=by, timeout=timeout)
+  File "/Users/apple/PycharmProjects/dojahProject/venv/lib/python3.9/site-packages/seleniumbase/fixtures/base_case.py", line 4962, in wait_for_element_visible
+    return page_actions.wait_for_element_visible(
+  File "/Users/apple/PycharmProjects/dojahProject/venv/lib/python3.9/site-packages/seleniumbase/fixtures/page_actions.py", line 377, in wait_for_element_visible
+    timeout_exception(ElementNotVisibleException, message)
+  File "/Users/apple/PycharmProjects/dojahProject/venv/lib/python3.9/site-packages/seleniumbase/fixtures/page_actions.py", line 163, in timeout_exception
+    raise exception(message)
+Exception: Message: 
+ Element {//div[@id='account-select']/div/form/div/div/img} was not visible after 6 seconds!
